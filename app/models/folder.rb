@@ -8,4 +8,11 @@
 #  updated_at :datetime         not null
 #
 class Folder < ApplicationRecord
+  has_many :versions, dependent: :destroy
+  has_many :users, through: :versions, source: :user
+
+  def versions_count
+    versions.size
+  end
+  
 end
