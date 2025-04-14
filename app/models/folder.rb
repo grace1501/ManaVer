@@ -8,6 +8,8 @@
 #  updated_at :datetime         not null
 #
 class Folder < ApplicationRecord
+  validates :name, presence: true, uniqueness: true
+  
   has_many :versions, dependent: :destroy
   has_many :users, through: :versions, source: :user
 
