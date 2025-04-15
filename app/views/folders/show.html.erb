@@ -8,3 +8,14 @@
 
   <%= button_to "Destroy this folder", @folder, method: :delete %>
 </div>
+
+<%= link_to "Add a new version", new_version_path %>
+
+<div id="versions">
+  <% @folder.versions.each do |version| %>
+    <%= render version %>
+    <p>
+      <%= link_to "Show this version", version %>
+    </p>
+  <% end %>
+</div>
