@@ -14,9 +14,15 @@
     <%= version.description %>
   </p>
 
+  <% if version.link.attached? %>
   <p>
     <strong>Link:</strong>
+    
+    <%= link_to "Download", rails_blob_url(version.link, disposition: "attachment") %>
+    <%= link_to "View", rails_blob_url(version.link, disposition: "inline") %>
+
     <%= version.link %>
   </p>
+  <% end %>
 
 </div>
