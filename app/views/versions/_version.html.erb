@@ -15,14 +15,16 @@
   </p>
 
   <% if version.link.attached? %>
-  <p>
-    <strong>Link:</strong>
-    
-    <%= link_to "Download", rails_blob_url(version.link, disposition: "attachment") %>
-    <%= link_to "View", rails_blob_url(version.link, disposition: "inline") %>
+    <div>
+      <%= link_to "Download version", rails_blob_url(version.link, disposition: "attachment") %>
+    </div>
 
-    <%= version.link %>
-  </p>
+    <div>
+      <%= link_to "View version", rails_blob_url(version.link, disposition: "inline"), target: "_blank" %>
+    </div>
+
+  <% else %>
+    <p>There is no file attached to this version. Update version to add an attachment.</p>
   <% end %>
 
 </div>
