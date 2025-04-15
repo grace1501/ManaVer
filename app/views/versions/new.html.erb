@@ -5,7 +5,7 @@
 <br>
 
 <div>
-  <%#= link_to "Back to versions", folder_path(folder.id) %>
+  <%= link_to "Back to folder", folder_path(params[:folder_id]) %>
 </div>
 
 <%= form_with url: versions_path, method: :post, scope: :version do |form| %>
