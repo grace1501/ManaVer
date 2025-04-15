@@ -36,6 +36,8 @@ class VersionsController < ApplicationController
 
   # PATCH/PUT /versions/1 or /versions/1.json
   def update
+    # Only allow update of name, description, and link
+    params.require(:version).permit(:name, :description, :link)
     respond_to do |format|
       if @version.update(version_params)
         format.html { redirect_to version_url(@version), notice: "Version was successfully updated." }

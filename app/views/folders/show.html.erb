@@ -9,7 +9,7 @@
   <%= button_to "Destroy this folder", @folder, method: :delete %>
 </div>
 
-<%= link_to "Add a new version", new_version_path %>
+<%= link_to "Add a new version", new_version_path(folder_id: @folder.id) %>
 
 <div id="versions">
   <% @folder.versions.each do |version| %>
