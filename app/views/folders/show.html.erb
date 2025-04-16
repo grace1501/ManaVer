@@ -1,15 +1,27 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @folder %>
-
-<div>
-  <%= link_to "Edit this folder", edit_folder_path(@folder) %> |
-  <%= link_to "Back to folders", folders_path %>
-
-  <%= button_to "Destroy this folder", @folder, method: :delete %>
+<div class="row">
+  <%= link_to "Back to all folders", folders_path %>
 </div>
 
-<%= link_to "Add a new version", new_version_path(folder_id: @folder.id) %>
+<div class="row">
+  <h1><%= @folder.name %></h1>
+  <%= link_to "Change name", edit_folder_path(@folder) %>
+</div>
+
+<div id="default-version" class="row">
+  <h3>Default</h3>
+
+  <% if @folder.default_version %>
+    <%= render "/versions/version", version: @folder.default_version %>
+  <% else %>
+    <p>There is no default version assigned yet.</p>
+  <% end %>
+</div>
+
+<div>
+  <%= link_to "Add a new version", new_version_path(folder_id: @folder.id) %>
+</div>
 
 <div id="versions">
   <% @folder.versions.each do |version| %>
@@ -18,4 +30,8 @@
       <%= link_to "Show this version", version %>
     </p>
   <% end %>
+</div>
+
+<div>
+  <%= button_to "Delete this folder and all associated versions", @folder, method: :delete %>
 </div>

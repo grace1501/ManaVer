@@ -1,0 +1,20 @@
+<div id="default-version">
+
+  <% if version.link.attached? %>
+    <div>
+      <%= link_to "View", rails_blob_url(version.link, disposition: "inline"), target: "_blank" %>
+    </div>
+
+    <div>
+      <%= link_to "Download", rails_blob_url(version.link, disposition: "attachment") %>
+    </div>   
+
+    <div>
+      <%= link_to "Share", rails_blob_url(version.link, host: request.base_url), target: "_blank" %>
+    </div>
+
+  <% else %>
+    <p>No file attachment.</p>
+  <% end %>
+
+</div>
