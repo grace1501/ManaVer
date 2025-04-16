@@ -14,6 +14,7 @@
     <%= version.description %>
   </p>
 
+  
   <% if version.link.attached? %>
     <span>
       <%= link_to "View", rails_blob_url(version.link, disposition: "inline"), target: "_blank" %>
@@ -31,7 +32,10 @@
     <p>No file to download. Update to add an attachment.</p>
   <% end %>
 
-  <%= button_to "Make default", make_default_path(version.id), method: :get, class: "btn btn-sm btn-outline-success",
-              data: { turbo: false } %>
+  <% if version.folder.default_version != version %>
+    <div id="make-default">
+      <%= button_to "Make default", make_default_path(version.id), method: :get, class: "btn btn-sm btn-outline-success", data: { turbo: false } %>
+    </div>
+  <% end %>
 
 </div>
