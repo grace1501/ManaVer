@@ -1,7 +1,7 @@
 <p style="color: green"><%= notice %></p>
 
 <div class="row">
-  <%= link_to "Back to all folders", folders_path %>
+  <%= link_to "Back to all files", folders_path %>
 </div>
 
 <div class="row">
@@ -10,13 +10,12 @@
 </div>
 
 <div id="default-version" class="row">
-  <h3>Default</h3>
-
-  <% if @folder.default_version %>
-    <%= render "/versions/version", version: @folder.default_version %>
-  <% else %>
-    <p>There is no default version assigned yet.</p>
-  <% end %>
+  <h4>Default</h4>
+    <% if @folder.default_version %>
+      <%= render "versions/version", version: @folder.default_version %>
+    <% else %>
+      <p>No default version assigned.</p>
+    <% end %>
 </div>
 
 <div>
@@ -27,11 +26,11 @@
   <% @folder.versions.each do |version| %>
     <%= render version %>
     <p>
-      <%= link_to "Show this version", version %>
+      <%= link_to "Show details", version %>
     </p>
   <% end %>
 </div>
 
 <div>
-  <%= button_to "Delete this folder and all associated versions", @folder, method: :delete %>
+  <%= button_to "Delete this file and all associated versions", @folder, method: :delete %>
 </div>
