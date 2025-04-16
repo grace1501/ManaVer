@@ -1,14 +1,30 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Folders</h1>
+<h1>All files</h1>
 
-<%= link_to "Add a new folder", new_folder_path %>
+<%= link_to "Add a new file", new_folder_path %>
 
 <div id="folders">
+  <ul class="list-group">
+  
   <% @folders.each do |folder| %>
-    <%= render folder %>
-    <p>
-      <%= link_to "Show this folder", folder %>
-    </p>
+    <li class="list-group-item d-flex justify-content-between align-items-start">
+      <div class="ms-2 me-auto">
+      <%= render folder %>
+        <%= link_to "Show details", folder %>
+      </div>
+
+      <span class="">
+        <div class=" badge text-bg-primary rounded-pill">
+          <%= folder.versions_count %> versions
+        </div>
+        <div>
+          Last updated: <%= time_ago_in_words(folder.updated_at) %> ago
+        </div>
+      </span>
+      
+    </li>
   <% end %>
+
+  </ul>
 </div>
