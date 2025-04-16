@@ -1,5 +1,5 @@
 class VersionsController < ApplicationController
-  before_action :set_version, only: %i[ show edit update destroy ]
+  before_action :set_version, only: %i[ show edit update destroy make_default ]
 
   # GET /versions or /versions.json
   def index
@@ -58,6 +58,24 @@ class VersionsController < ApplicationController
       format.html { redirect_to folder_url(folder_id), notice: "Version was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  # Make default GET /versions/:id/make_default
+  def make_default
+    folder_id = @version.folder_id
+    @folder = Folder.find(folder_id)
+    @folder.default_version = @version
+
+    respond_to do |format|
+      if @folder.save
+        format.html { redirect_to folder_url(folder_id), notice: "Default version was successfully updated." }
+        format.json { head :no_content }
+      else
+        format.html { render :show, status: :unprocessable_entity }
+        format.json { render json: @version.errors, status: :unprocessable_entity }
+      end
+    end
+
   end
 
   private

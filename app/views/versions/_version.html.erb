@@ -31,4 +31,7 @@
     <p>No file to download. Update to add an attachment.</p>
   <% end %>
 
+  <%= button_to "Make default", make_default_path(version.id), method: :get, class: "btn btn-sm btn-outline-success",
+              data: { turbo: false } %>
+
 </div>
