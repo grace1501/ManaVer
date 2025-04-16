@@ -14,7 +14,7 @@
 #
 # Foreign Keys
 #
-#  fk_rails_...  (default_version_id => versions.id)
+#  fk_rails_...  (default_version_id => versions.id) ON DELETE => nullify
 #
 class Folder < ApplicationRecord
   validates :name, presence: true, uniqueness: true
@@ -32,6 +32,7 @@ class Folder < ApplicationRecord
   def default_version_must_belong_to_folder
     if default_version && default_version.folder_id != id
       errors.add(:default_version, 'must belong to this folder')
+    end
   end
 
 end

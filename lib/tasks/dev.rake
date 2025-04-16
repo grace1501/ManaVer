@@ -9,10 +9,8 @@ task({ :sample_data => :environment }) do
   p "Creating sample data..."
 
   usernames = ["alice", "bob", "eve"]
-
   users = []
-  folders = []
-
+  
   # Creating sample users
   usernames.each do |username|
     user = User.new
@@ -22,7 +20,8 @@ task({ :sample_data => :environment }) do
     user.save
     users.push(user)
   end
-
+  
+  # Creating samle folders, multiple sample versions that belongs to each folder, and assign one default version for each folder
   10.times do 
       folder = Folder.new
       folder.name = Faker::Book.genre
@@ -36,10 +35,14 @@ task({ :sample_data => :environment }) do
         version.folder_id = folder.id
         version.user_id = users.sample().id
         version.save
+
+        versions.push(version)
       end
 
-    end
+      folder.default_version = versions.sample()
+      folder.save
 
+    end
 
   p "Finished task. Created #{User.count} users, #{Folder.count} folders, and #{Version.count} versions."
 end
