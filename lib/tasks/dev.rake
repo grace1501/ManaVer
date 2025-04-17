@@ -24,13 +24,14 @@ task({ :sample_data => :environment }) do
   # Creating samle folders, multiple sample versions that belongs to each folder, and assign one default version for each folder
   10.times do 
       folder = Folder.new
-      folder.name = Faker::Book.genre
+      folder.name = Faker::Book.title
       folder.save
 
       versions = []
-      rand(2..5).times do
+    
+      for i in 2..5 do
         version = Version.new
-        version.name = Faker::Book.title
+        version.name = "#{folder.name} v#{i}"
         version.description = Faker::Quote.famous_last_words
         version.folder_id = folder.id
         version.user_id = users.sample().id
