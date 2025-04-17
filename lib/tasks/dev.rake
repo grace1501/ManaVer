@@ -34,6 +34,13 @@ task({ :sample_data => :environment }) do
         version.description = Faker::Quote.famous_last_words
         version.folder_id = folder.id
         version.user_id = users.sample().id
+
+        # get sample photo and upload/attach to version
+        require "open-uri"
+        photo_url = "https://picsum.photos/400"
+        photo = URI.open(photo_url)
+        version.link.attach(io: photo, filename: "#{version.name}.jpg", content_type: "image.jpg")
+        
         version.save
 
         versions.push(version)
