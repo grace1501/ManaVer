@@ -10,7 +10,10 @@ Rails.application.routes.draw do
   end
 
   resources :folders
-  resources :versions, except: [:index]  
   
-  get "about", { :controller => "pages", :action => "about"}
+  resources :versions, except: [:index]
+
+  get "versions/:id/make_default", to: "versions#make_default", as: :make_default
+  
+  get "about", to: "pages#about"
 end
