@@ -8,7 +8,7 @@
     <% if version.link.attached? %>
       <%= image_tag url_for(version.link), class: "card-img-top", alt: version.name %>
     <% else %>
-      <img src="" class="card-img-top" alt="A placeholder image">
+      <%= image_tag "placeholder_image.jpg", class: "card-img-top", alt: "Placeholder" %>
     <% end %>
     
   
@@ -44,7 +44,7 @@
     </span>
 
   <% else %>
-    <p class="fst-italic">No file to download. Update to add an attachment.</p>
+    <p class="fst-italic">No file to download. Edit to add an attachment.</p>
   <% end %>
 </div>
 
