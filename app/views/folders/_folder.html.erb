@@ -12,7 +12,7 @@
 
     <div class="col-4">
       <% if folder.default_version %>
-        <%= render "folders/default", version: folder.default_version %>
+        <%= render "folders/default_version_link", version: folder.default_version %>
       <% else %>
         <p class="fst-italic">No default version assigned.</p>
       <% end %>
