@@ -1,12 +1,7 @@
 <div id="<%= dom_id version %>">
   <p>
     <strong>User:</strong>
-    <%= version.user_id %>
-  </p>
-
-  <p>
-    <strong>Folder:</strong>
-    <%= version.folder_id %>
+    <%= version.user.username %>
   </p>
 
   <p>
@@ -19,9 +14,17 @@
     <%= version.description %>
   </p>
 
-  <p>
-    <strong>Link:</strong>
-    <%= version.link %>
-  </p>
+  <% if version.link.attached? %>
+    <div>
+      <%= link_to "Download version", rails_blob_url(version.link, disposition: "attachment") %>
+    </div>
+
+    <div>
+      <%= link_to "View version", rails_blob_url(version.link, disposition: "inline"), target: "_blank" %>
+    </div>
+
+  <% else %>
+    <p>There is no file attached to this version. Update version to add an attachment.</p>
+  <% end %>
 
 </div>

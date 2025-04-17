@@ -4,7 +4,7 @@
 
 <div>
   <%= link_to "Edit this version", edit_version_path(@version) %> |
-  <%= link_to "Back to versions", versions_path %>
+  <%= link_to "All versions of #{@version.folder.name}", folder_path(@version.folder_id) %>
 
   <%= button_to "Destroy this version", @version, method: :delete %>
 </div>

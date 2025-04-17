@@ -36,6 +36,8 @@ class VersionsController < ApplicationController
 
   # PATCH/PUT /versions/1 or /versions/1.json
   def update
+    # Only allow update of name, description, and link
+    params.require(:version).permit(:name, :description, :link)
     respond_to do |format|
       if @version.update(version_params)
         format.html { redirect_to version_url(@version), notice: "Version was successfully updated." }
@@ -49,10 +51,11 @@ class VersionsController < ApplicationController
 
   # DELETE /versions/1 or /versions/1.json
   def destroy
+    folder_id = @version.folder_id
     @version.destroy!
 
     respond_to do |format|
-      format.html { redirect_to versions_url, notice: "Version was successfully destroyed." }
+      format.html { redirect_to folder_url(folder_id), notice: "Version was successfully destroyed." }
       format.json { head :no_content }
     end
   end

@@ -3,6 +3,6 @@ Rails.application.routes.draw do
   devise_for :users
   
   resources :folders
-  resources :versions  
+  resources :versions, except: [:index]  
   
 end
